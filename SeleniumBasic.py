@@ -7,18 +7,18 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Chrome()
+driver.maximize_window()
 driver.implicitly_wait(10)
 wait = WebDriverWait(driver,10)
-driver.maximize_window()
 
 driver.get("https://rahulshettyacademy.com/seleniumPractise/#/")
 
 driver.find_element(By.XPATH,"//input[@class='search-keyword']").send_keys("ber")
+time.sleep(1)
 
 ProductList = driver.find_elements(By.XPATH,"//div[@class='products']/div")
 ProductCount = len(ProductList)
 
-wait.until(ProductCount==3)
 print(ProductCount)
 assert ProductCount > 0
 print("products appeared correctly")
