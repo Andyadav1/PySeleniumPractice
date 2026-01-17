@@ -13,12 +13,16 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 from selenium.webdriver.support.wait import WebDriverWait
 
-driver = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+#options.add_argument("headless")
+options.add_argument("--ignore-crtificate-errors")
+options.add_argument("--start-maximized")
+
+driver = webdriver.Chrome(options = options)
 wait = WebDriverWait(driver,10)
-driver.maximize_window()
+#driver.maximize_window()
 driver.implicitly_wait(10)
 wait = WebDriverWait(driver,10)
-
 
 
 driver.get("https://rahulshettyacademy.com/AutomationPractice/")
