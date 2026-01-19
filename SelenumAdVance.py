@@ -51,10 +51,6 @@ FirstWindowProof = driver.find_element(By.XPATH,"//img[@src='images/rs_logo.png'
 assert  expected_conditions.presence_of_element_located(FirstWindowProof)
 print("back to First page")
 
-driver.switch_to.frame("courses-iframe")
-driver.find_element(By.XPATH,"//a[@class='theme-btn']").click()
-driver.switch_to.default_content()
-
 driver.find_element(By.XPATH,"//input[@id='confirmbtn']").click()
 driver.switch_to.alert.accept()
 driver.switch_to.default_content()
@@ -64,3 +60,9 @@ driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 driver.execute_script("window.scrollTo(0,document.body.scrollTopMax)")
 driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 driver.execute_script("window.scrollTo(0,document.body.scrollTopMax)")
+
+driver.switch_to.frame("courses-iframe")
+wait.until(expected_conditions.presence_of_element_located((By.XPATH,"//a[@class='theme-btn']")))
+driver.find_element(By.XPATH,"//a[@class='theme-btn']").click()
+driver.switch_to.default_content()
+

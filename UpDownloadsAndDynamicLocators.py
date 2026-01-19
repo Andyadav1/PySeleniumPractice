@@ -1,11 +1,5 @@
-from asyncio import FutureCallGraph
-from os import fdopen
-from pydoc import cli
-
-import openpyxl
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.devtools.v141.fed_cm import click_dialog_button
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -34,7 +28,9 @@ wait.until(expected_conditions.visibility_of_element_located(UpSuccessToast))
 assert  expected_conditions.visibility_of_element_located(UpSuccessToast)
 print(driver.find_element(*UpSuccessToast).text)
 
+FruitColumn = driver.find_element(By.XPATH,"//div[text()='Fruit Name']").get_attribute("data-column-id")
 PriceColumn = driver.find_element(By.XPATH,"//div[text()='Price']").get_attribute("data-column-id")
-Price = (By.XPATH,"//div[text()='"+FruitName+"']/../../div[@id='cell-"+PriceColumn+"-undefined']")
+Price = driver.find_element(By.XPATH,"//div[@id = 'cell-"+FruitColumn+"-undefined']/div[text() = '"+FruitName+"']/../../div[@id='cell-"+PriceColumn+"-undefined']").text
+
 assert  Price ==  NewValue
-print(driver.find_element(*Price).text)
+print(Price)
